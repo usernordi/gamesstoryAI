@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090909">
+<title>Дом, в котором забыли рассвет</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap');
+:root{--bg:#090909;--panel:#11110f;--text:#d8d0c2;--muted:#8d867b;--gold:#b89a67;--line:#393329}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 50% 0%,#282018 0%,#11100e 38%,#080808 78%);color:var(--text);font-family:Manrope, sans-serif;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.24'/%3E%3C/svg%3E")}
+header{padding:24px 6vw;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff12}
+.brand{font-family:'Cormorant Garamond',serif;letter-spacing:.16em;text-transform:uppercase;font-size:14px;color:#b9aa91}
+.status{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#82796c}
+main{width:min(920px,90vw);margin:7vh auto 70px}
+.kicker{text-align:center;color:var(--gold);font-size:11px;letter-spacing:.3em;text-transform:uppercase;margin-bottom:18px}
+h1,h2{font-family:'Cormorant Garamond',serif;font-weight:500}
+h1{text-align:center;font-size:clamp(42px,8vw,76px);line-height:.95;margin:0 auto 18px;max-width:760px}
+.subtitle{text-align:center;color:#9c9386;font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;margin-bottom:46px}
+.game{background:linear-gradient(145deg,#171613ee,#0d0d0cee);border:1px solid var(--line);box-shadow:0 25px 90px #0009;padding:clamp(22px,5vw,48px);position:relative}
+.game:before,.game:after{content:"";position:absolute;width:35px;height:35px;border-color:#786447;border-style:solid;opacity:.7}
+.game:before{top:10px;left:10px;border-width:1px 0 0 1px}.game:after{bottom:10px;right:10px;border-width:0 1px 1px 0}
+.scene-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:#8d806d;font-size:10px;letter-spacing:.18em;text-transform:uppercase;border-bottom:1px solid #ffffff18;padding-bottom:14px}
+.scene-art{height:155px;margin:25px 0 28px;display:grid;place-items:center;background:linear-gradient(180deg,#252018,#12110f);border:1px solid #ffffff12;overflow:hidden;position:relative}
+.scene-art:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 110%,#a17b4429,transparent 60%)}
+.art-symbol{font-family:'Cormorant Garamond',serif;font-size:78px;color:#9b8057;text-shadow:0 0 30px #b18a4b66;position:relative}
+h2{font-size:34px;margin:0 0 16px;color:#e2d7c4}
+.story{font-family:'Cormorant Garamond',serif;font-size:22px;line-height:1.55;color:#c9c0b2;white-space:pre-line;min-height:120px}
+.story em{color:#c5a879}
+.choices{display:grid;gap:10px;margin-top:28px}
+.choice{width:100%;text-align:left;padding:15px 18px;background:#171612;border:1px solid #494031;color:#d8cbb6;font:500 13px Manrope,sans-serif;letter-spacing:.02em;cursor:pointer;transition:.2s}
+.choice:hover{background:#292319;border-color:#ad8c59;transform:translateX(3px)}
+.choice:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.bottom{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:25px;padding-top:18px;border-top:1px solid #ffffff15;color:#81796e;font-size:11px}
+.inventory{display:flex;gap:8px;flex-wrap:wrap}
+.item{border:1px solid #514632;padding:5px 9px;color:#bba47b;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+button.restart{background:none;border:0;color:#a58c65;text-decoration:underline;cursor:pointer;font:inherit}
+footer{text-align:center;color:#5f5a51;font-size:10px;letter-spacing:.16em;margin-top:28px;text-transform:uppercase}
+@media(max-width:600px){header{padding:18px 5vw}.status{display:none}main{margin-top:5vh}.scene-art{height:120px}.story{font-size:20px}.bottom{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header><div class="brand">A story by Nordil</div><div class="status">Интерактивный хоррор · 1402</div></header>
+<main>
+  <div class="kicker">Готическая история</div>
+  <h1>Дом, в котором<br>забыли рассвет</h1>
+  <div class="subtitle">Некоторые двери лучше не открывать.</div>
+  <section class="game" aria-live="polite">
+    <div class="scene-top"><span id="chapter">Пролог</span><span id="progress">Ночь первая</span></div>
+    <div class="scene-art"><div class="art-symbol" id="symbol">✧</div></div>
+    <h2 id="scene-title">Дорога к замку</h2>
+    <div class="story" id="story"></div>
+    <div class="choices" id="choices"></div>
+    <div class="bottom"><div><div style="margin-bottom:8px">НАЙДЕНО</div><div class="inventory" id="inventory"><span class="item">Пока пусто</span></div></div><button class="restart" id="restart">Начать заново</button></div>
+  </section>
+  <footer>Тишина здесь никогда не бывает пустой</footer>
+</main>
+<script>
+const scenes = {
+start:{chapter:"Пролог",progress:"Ночь первая",symbol:"♜",title:"Дорога к замку",text:"1402 год. Север Германии.\\n\\nСнег идёт уже шестой час. Твоя лошадь едва переставляет ноги по размокшей дороге. Впереди, за стеной чёрных деревьев, появляются башни старого замка. В его окнах горит свет.\\n\\nСтранно только одно: вокруг замка нет ни единой снежинки.",choices:[["Направиться к воротам","gate"],["Осмотреть дорогу и окрестности","road"]]},
+road:{chapter:"Глава I · Дорога",progress:"Ночь первая",symbol:"❄",title:"Следы в снегу",text:"Ты спешиваешься. Рядом с дорогой видны следы: маленькие, будто детские. Они ведут от леса к замку, но не возвращаются обратно.\\n\\nВ снегу лежит старый железный ключ. На его головке выгравирована буква «Э».",item:"Железный ключ",choices:[["Забрать ключ и идти к замку","gate"]]},
+gate:{chapter:"Глава I · Тринадцатый стул",progress:"Полночь",symbol:"♜",title:"Женщина с фонарём",text:"Ворота открываются прежде, чем ты успеваешь постучать второй раз. На пороге стоит женщина в тёмном платье.\\n\\n— Вы опоздали, — говорит она.\\n\\n— Меня здесь ждут?\\n\\nЖенщина долго смотрит на тебя.\\n\\n— Входите. И что бы вы ни услышали этой ночью, не отвечайте, если голос принадлежит тому, кого вы любите.",choices:[["Войти в замок","hall"],["Спросить, кто она такая","agnes"]]},
+agnes:{chapter:"Глава I · Знакомство",progress:"Полночь",symbol:"♧",title:"Агнесса",text:"— Агнесса. Я присматриваю за этим домом.\\n\\n— А хозяин?\\n\\n— Он здесь. Просто не всегда желает, чтобы его видели.\\n\\nОна отступает в сторону. За её спиной на миг мелькает детская фигура. Когда ты поворачиваешься, коридор уже пуст.",choices:[["Последовать за Агнессой","hall"]]},
+hall:{chapter:"Глава I · Тринадцатый стул",progress:"Полночь",symbol:"☽",title:"Двенадцать гостей",text:"В главном зале горит камин. За длинным столом сидят одиннадцать человек: монах, девочка с куклой, воин с пустым рукавом и другие незнакомцы.\\n\\nТы садишься. Агнесса ставит перед тобой миску супа.\\n\\nВ конце стола медленно отодвигается тринадцатый стул. На нём появляется высокий мужчина в чёрном одеянии. Его лицо скрывает тень.\\n\\n— Наконец-то, — произносит он. — Мы вас заждались.",choices:[["Спросить незнакомца, кто он","edgar"],["Промолчать и наблюдать за гостями","guests"]]},
+guests:{chapter:"Глава II · Чужие истории",progress:"После полуночи",symbol:"♟",title:"Девочка с куклой",text:"Девочка осторожно тянет тебя за рукав.\\n\\n— Не верьте хозяину. Он обещает вернуть тех, кого мы потеряли. Но каждый раз забирает что-нибудь взамен.\\n\\nОна протягивает тебе маленький медный жетон.\\n\\n— Если услышите три удара, спрячьтесь. Это значит, что он уже рядом.",item:"Медный жетон",choices:[["Поговорить с Агнессой","room"],["Подойти к человеку в чёрном","edgar"]]},
+edgar:{chapter:"Глава II · Хозяин",progress:"После полуночи",symbol:"♛",title:"Эдгар де Вальден",text:"— Эдгар де Вальден. Хозяин этого дома.\\n\\nЕго голос звучит почти ласково. Он рассказывает, что когда-то потерял жену и сына. Он хотел вернуть их хотя бы на один день. Но дом исполнил желание слишком буквально.\\n\\n— Вы называете меня чудовищем, — говорит он. — Но разве вы не сделали бы всё ради тех, кого любите?",choices:[["Сказать, что он должен отпустить прошлое","room"],["Спросить, как покинуть дом","room"]]},
+room:{chapter:"Глава III · Запертые комнаты",progress:"Глубокая ночь",symbol:"⌑",title:"Комната Агнессы",text:"Агнесса запирает дверь. На столе лежит список из тринадцати имён. Двенадцать перечёркнуты. Последнее — твоё.\\n\\n— Я нахожусь здесь двадцать четыре года, — говорит она. — Мой младший брат исчез в этом доме. Я до сих пор слышу, как он зовёт меня.\\n\\nОна показывает на старую дверь в конце коридора. За ней находится библиотека.",choices:[["Пойти в библиотеку","library"],["Потребовать объяснений о своём имени в списке","list"]]},
+list:{chapter:"Глава III · Список",progress:"Глубокая ночь",symbol:"✒",title:"Твоё имя",text:"— Откуда здесь моё имя?\\n\\nАгнесса опускает глаза.\\n\\n— Потому что ты уже был здесь. Просто пока не вспомнил.\\n\\nОна не говорит больше ни слова. Из-за стены доносится три тихих удара.",choices:[["Отправиться в библиотеку","library"]]},
+library:{chapter:"Глава IV · Библиотека",progress:"Перед рассветом",symbol:"▤",title:"Дневник хозяина",text:"Ты находишь книгу Эдгара. На последней странице написано:\\n\\n«Я хотел только ещё один день. Один последний день с ними. Если всё получится, у нас будет столько времени, сколько мы захотим».\\n\\nНа полях другой рукой выведено: «Не ищи выход. Ищи то, что удерживает дом».\\n\\nЗа книжным шкафом виднеется узкий проход.",choices:[["Пройти в тайную комнату","secret"],["Вернуться к Агнессе с дневником","agnes2"]]},
+agnes2:{chapter:"Глава IV · Признание",progress:"Перед рассветом",symbol:"♧",title:"То, что скрывала Агнесса",text:"Агнесса читает страницу и бледнеет.\\n\\n— Я видела его сына. Он всё ещё в детской. Но это уже не ребёнок, которого я помню.\\n\\nОна достаёт деревянную игрушку — маленького коня с отломанной ногой.\\n\\n— Мой брат сделал его для меня. Если мы найдём детскую, возможно, я наконец узнаю, что с ним произошло.",choices:[["Вместе подняться в детскую","secret"]]},
+secret:{chapter:"Глава V · Детская",progress:"Последняя ночь",symbol:"♧",title:"Мальчик за дверью",text:"В детской сидит мальчик лет семи. Он держит деревянного коня с отломанной ногой.\\n\\nАгнесса замирает.\\n\\n— Роберт?..\\n\\nМальчик поднимает голову. На мгновение перед вами обычный испуганный ребёнок. Затем его лицо становится неподвижным.\\n\\n— Ты обещала вернуться, — говорит он.\\n\\nИз коридора доносится голос Эдгара: «Не трогайте моего сына».",choices:[["Убедить Агнессу, что это уже не её брат","choice1"],["Позволить Агнессе поговорить с мальчиком","choice2"]]},
+choice1:{chapter:"Глава VI · Последний выбор",progress:"Рассвет близко",symbol:"☼",title:"Правда",text:"Агнесса долго смотрит на мальчика. Потом достаёт деревянного коня и кладёт его на пол.\\n\\n— Я помню тебя, Роберт. И я больше не буду искать тебя в этом доме.\\n\\nМальчик исчезает. Стены начинают дрожать. В дверях появляется Эдгар, впервые без тени на лице.",choices:[["Поговорить с Эдгаром","finalgood"],["Попытаться выбраться одному","finalescape"]]},
+choice2:{chapter:"Глава VI · Последний выбор",progress:"Рассвет близко",symbol:"☽",title:"Обещание",text:"Агнесса обнимает мальчика. На несколько секунд он снова выглядит ребёнком. Но дом начинает трястись, а из стен тянутся длинные тени.\\n\\nЭдгар появляется в дверях.\\n\\n— Вы не понимаете, что делаете. Если отпустите их, от меня ничего не останется.",choices:[["Попытаться остановить Эдгара","finalbad"],["Позвать Агнессу к выходу","finalescape"]]},
+finalgood:{chapter:"Эпилог · Концовка I",progress:"Рассвет",symbol:"☀",title:"Дом отпускает",text:"— Вы любили их, — говоришь ты. — Но любовь не должна превращаться в вечную тюрьму.\\n\\nЭдгар смотрит на пустую детскую. Впервые за четыреста лет он признаёт, что его сын умер. Дом начинает рушиться.\\n\\nТы и Агнесса выходите наружу. Над лесом поднимается настоящее солнце.\\n\\nАгнесса впервые за двадцать четыре года видит рассвет.\\n\\nНо на дороге лежит железный ключ с именем Эдгара.",choices:[["Сыграть ещё раз","start"]]},
+finalescape:{chapter:"Эпилог · Концовка II",progress:"Серый рассвет",symbol:"☼",title:"Цена свободы",text:"Ты находишь выход и выбираешься из замка. Агнесса остаётся внутри.\\n\\nСнаружи идёт снег. Ты жив, но не можешь вспомнить её лицо.\\n\\nСпустя семь лет ты найдёшь у себя на подоконнике железный ключ. На нём будет выгравировано твоё имя.\\n\\nДом не забыл тебя.",choices:[["Попробовать изменить судьбу","start"]]},
+finalbad:{chapter:"Эпилог · Концовка III",progress:"Вечная ночь",symbol:"♛",title:"Тринадцатый гость",text:"Эдгар протягивает руку. Ты пытаешься отступить, но коридор исчезает.\\n\\nНа следующее утро за столом снова сидят двенадцать гостей. Тринадцатый стул свободен.\\n\\nПока что.",choices:[["Начать сначала","start"]]}
+};
+let inventory=[];
+function show(id){
+ const s=scenes[id]; if(!s)return;
+ if(s.item&&!inventory.includes(s.item))inventory.push(s.item);
+ document.getElementById('chapter').textContent=s.chapter;
+ document.getElementById('progress').textContent=s.progress;
+ document.getElementById('symbol').textContent=s.symbol;
+ document.getElementById('scene-title').textContent=s.title;
+ document.getElementById('story').textContent=s.text.replace(/\\n/g,"\n");
+ const inv=document.getElementById('inventory');
+ inv.innerHTML=inventory.length?inventory.map(x=>`<span class="item">${x}</span>`).join(""):'<span class="item">Пока пусто</span>';
+ const box=document.getElementById('choices');box.innerHTML="";
+ s.choices.forEach(([label,next])=>{const b=document.createElement('button');b.className='choice';b.textContent='›  '+label;b.addEventListener('click',()=>{if(next==='start')inventory=[];show(next)});box.appendChild(b)});
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+document.getElementById('restart').addEventListener('click',()=>{inventory=[];show('start')});
+show('start');
+</script>
+</body>
+</html>
